@@ -1,8 +1,36 @@
-﻿@{
-    ViewData["Title"] = "Page d'accueil";
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Localizer["HomePage"];
 }
 
 <div class="text-center">
     <h1 class="display-4">Test</h1>
-    <p>Salut tout le monde !</p>
+    <p>@Localizer["HomeWelcome"]</p>
+    <p>Current Culture: @System.Globalization.CultureInfo.CurrentCulture</p>
+    <p>Message 1: @Localizer["HomeNewMessage1"]</p>
+    <p>Message 2: @Localizer["HomeNewMessage2"]</p>
+
+    <select name="langSelect">
+        <option>--</option>
+        <option value="en">English Global</option>
+        <option value="en-GB">English UK</option>
+        <option value="en-US">English US</option>
+        <option value="fr-FR">French</option>
+        <option value="ja">Japanese</option>
+        <option value="pl-PL">Polish</option>
+        <option value="de">German</option>
+    </select>
 </div>
+
+<script>
+    var langSelector = document.getElementsByName('langSelector');
+
+    document.addEventListener('change', changeLanguage);
+
+    function changeLanguage(e){
+        let lang = e.target.value;
+        console.log(lang);
+        window.location = '?culture='+lang
+    }
+</script>

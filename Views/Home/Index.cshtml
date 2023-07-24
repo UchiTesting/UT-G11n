@@ -11,7 +11,7 @@
     <p>Message 1: @Localizer["HomeNewMessage1"]</p>
     <p>Message 2: @Localizer["HomeNewMessage2"]</p>
 
-    <select name="langSelect">
+    <select id="langSelect">
         <option>--</option>
         <option value="en">English Global</option>
         <option value="en-GB">English UK</option>
@@ -24,13 +24,13 @@
 </div>
 
 <script>
-    var langSelector = document.getElementsByName('langSelector');
+    var langSelector = document.getElementById('langSelect');
 
-    document.addEventListener('change', changeLanguage);
+    langSelector.addEventListener('change', changeLanguage, false);
 
-    function changeLanguage(e){
+    function changeLanguage(e) {
         let lang = e.target.value;
         console.log(lang);
-        window.location = '?culture='+lang
+        window.location = '?culture=' + lang
     }
 </script>
